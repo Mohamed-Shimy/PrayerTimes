@@ -24,6 +24,8 @@ extension PrayerTimeName: Comparable {
     }
 }
 
+extension PrayerTimeName: Codable { }
+
 extension PrayerTimeName {
     
     public subscript(index: Int) -> Self {

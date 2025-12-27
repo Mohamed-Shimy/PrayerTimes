@@ -1,0 +1,482 @@
+{
+  "sourceLanguage" : "ar",
+  "strings" : {
+    "prayertime.calculationmethod.mwl" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "رابطة العالم الإسلامي"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Muslim World League"
+          }
+        }
+      }
+    },
+    "prayertime.calculationmethod.isna" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الجمعية الإسلامية لأمريكا الشمالية"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Islamic Society of North America"
+          }
+        }
+      }
+    },
+    "prayertime.calculationmethod.egypt" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الهيئة العامة المصرية للمساحة"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Egyptian General Authority of Survey"
+          }
+        }
+      }
+    },
+    "prayertime.calculationmethod.ummAlQura" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "جامعة أم القرى"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Umm al-Qura University"
+          }
+        }
+      }
+    },
+    "prayertime.calculationmethod.karachi" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "جامعة العلوم الإسلامية بكراتشي"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "University of Islamic Sciences, Karachi"
+          }
+        }
+      }
+    },
+    "prayertime.calculationmethod.dubai" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "وزارة الأوقاف دبي"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dubai Ministry of Awqaf"
+          }
+        }
+      }
+    },
+    "prayertime.calculationmethod.qatar" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "وزارة الأوقاف قطر"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Qatar Ministry of Awqaf"
+          }
+        }
+      }
+    },
+    "prayertime.calculationmethod.kuwait" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "وزارة الأوقاف والشؤون الإسلامية الكويت"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ministry of Awqaf and Islamic Affairs, Kuwait"
+          }
+        }
+      }
+    },
+    "prayertime.calculationmethod.oman" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "وزارة الأوقاف والشؤون الدينية عمان"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ministry of Awqaf and Religious Affairs, Oman"
+          }
+        }
+      }
+    },
+    "prayertime.calculationmethod.jordan" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "وزارة الأوقاف والشؤون والمقدسات الإسلامية الأردن"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ministry of Awqaf and Islamic Affairs, Jordan"
+          }
+        }
+      }
+    },
+    "prayertime.calculationmethod.morocco" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "وزارة الأوقاف والشؤون الإسلامية المغرب"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ministry of Awqaf and Islamic Affairs, Morocco"
+          }
+        }
+      }
+    },
+    "prayertime.calculationmethod.algeria" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "وزارة الشؤون الدينية والأوقاف الجزائر"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ministry of Religious Affairs and Awqaf, Algeria"
+          }
+        }
+      }
+    },
+    "prayertime.calculationmethod.tunisia" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "وزارة الشؤون الدينية تونس"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ministry of Religious Affairs, Tunisia"
+          }
+        }
+      }
+    },
+    "prayertime.calculationmethod.libya" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "وزارة الأوقاف والشؤون الإسلامية ليبيا"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ministry of Awqaf and Islamic Affairs, Libya"
+          }
+        }
+      }
+    },
+    "prayertime.calculationmethod.diyanet" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ديانت تركيا"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Turkey Diyanet"
+          }
+        }
+      }
+    },
+    "prayertime.calculationmethod.russia" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الهيئة الإسلامية الروسية"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Russian Islamic Authority"
+          }
+        }
+      }
+    },
+    "prayertime.calculationmethod.muis" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "مجلس الشؤون الإسلامية سنغافورة"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Majlis Ugama Islam Singapore"
+          }
+        }
+      }
+    },
+    "prayertime.calculationmethod.jakim" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "جابتان كيموجان إسلام ماليزيا (جاكيم)"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jabatan Kemajuan Islam Malaysia (JAKIM)"
+          }
+        }
+      }
+    },
+    "prayertime.calculationmethod.indonesia" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "وزارة الشؤون الدينية إندونيسيا"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Indonesian Ministry of Religious Affairs"
+          }
+        }
+      }
+    },
+    "prayertime.calculationmethod.brunei" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "السلطة الدينية بروناي"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Brunei Religious Authority"
+          }
+        }
+      }
+    },
+    "prayertime.calculationmethod.southAfrica" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "المجلس الإسلامي جنوب أفريقيا"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "South African Islamic Council"
+          }
+        }
+      }
+    },
+    "prayertime.calculationmethod.uiof" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اتحاد المنظمات الإسلامية فرنسا"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Union of Islamic Organizations of France"
+          }
+        }
+      }
+    },
+    "prayertime.calculationmethod.luwtc" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "مجلس التوقيت الموحد لندن"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "London Unified Working Times Council"
+          }
+        }
+      }
+    },
+    "prayertime.calculationmethod.bangladesh" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "وزارة الأوقاف بنغلاديش"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bangladesh Ministry of Awqaf"
+          }
+        }
+      }
+    },
+    "prayertime.calculationmethod.mcw" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "لجنة الرؤية العالمية"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Moonsighting Committee Worldwide"
+          }
+        }
+      }
+    },
+    "prayertime.calculationmethod.icna" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الدائرة الإسلامية لأمريكا الشمالية"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Islamic Circle of North America"
+          }
+        }
+      }
+    },
+    "prayertime.calculationmethod.ica" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "المجلس الإسلامي أستراليا"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Islamic Council of Australia"
+          }
+        }
+      }
+    },
+    "prayertime.calculationmethod.sudan" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "وزارة الأوقاف والشؤون الإسلامية السودان"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ministry of Awqaf and Islamic Affairs, Sudan"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.1"
+}

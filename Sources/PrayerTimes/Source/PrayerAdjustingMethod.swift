@@ -33,3 +33,5 @@ public enum PrayerAdjustingMethod: Int {
     ///
     case angleBased = 3
 }
+
+extension PrayerAdjustingMethod: CaseIterable { }

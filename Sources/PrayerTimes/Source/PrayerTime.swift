@@ -72,15 +72,6 @@ import Foundation
 /// [Reference Alperen.com][spec]
 ///
 /// [spec]:http://alperen.cepmuvakkit.com/alperen/makale/index.htm#Mekruh
-///
-/// [Reference PrayTimes.org][spec]
-///
-/// [spec]:http://praytimes.org
-///
-/// [Objective-C Source Code][spec]
-///
-/// [spec]:http://praytimes.org/code/git/?a=tree&p=PrayTimes&hb=HEAD&f=v1/objc
-///
 public struct PrayerTime: CustomStringConvertible {
     
     public typealias Location = PrayerTimeLocationCoordinate
@@ -207,7 +198,6 @@ public struct PrayerTime: CustomStringConvertible {
     ///   - calcMethod: The method for times calculations, default `egypt`.
     ///   - adjustHighLats: The adjusting method for higher latitudes, default `midNight`.
     ///   - timeFormat: The time format, default `time12`.
-    ///   - customParams: An optional array of `Double` for custom parameters.
     ///   - dhuhrMinutes: The value minutes after mid-day for Dhuhr, default `0.0`.
     ///   - asrJuristic: The juristic method, default `shafii`.
     ///
@@ -218,7 +208,6 @@ public struct PrayerTime: CustomStringConvertible {
         calcMethod: PrayerTimeCalculationMethod,
         adjustHighLats: PrayerAdjustingMethod,
         timeFormat: PrayerTimeStyle = .time12,
-        customParams: [Double]? = nil,
         asrJuristic: PrayerJuristicMethod,
         dhuhrMinutes: Double = 0.0
     ) {
@@ -235,16 +224,12 @@ public struct PrayerTime: CustomStringConvertible {
         offsets = [0, 0, 0, 0, 0, 0, 0]
         methodParams = PrayerTimeCalculationMethod.allCases.reduce([:]) { result, method in
             var result = result
-            result[method] = method.values
+            result[method] = method.parameters
             return result
         }
         
         let lonDiff = location.longitude / 336.0 // 336.0 = (15.0 * 24.0)
         julianDate = julianDate(from: date) - lonDiff
-        
-        if let customParams = customParams, !customParams.isEmpty {
-            setCustomParams(customParams)
-        }
     }
     
     /// PrayerTime
@@ -261,7 +246,6 @@ public struct PrayerTime: CustomStringConvertible {
             calcMethod: configurations.calcMethod,
             adjustHighLats: configurations.adjustHighLats,
             timeFormat: configurations.timeFormat,
-            customParams: configurations.customParams,
             asrJuristic: configurations.juristic,
             dhuhrMinutes: configurations.dhuhrMinutes
         )
@@ -280,20 +264,6 @@ public struct PrayerTime: CustomStringConvertible {
     ///
     private func timeDiff(_ time1: Double, _ time2: Double) -> Double {
         return fixhour(time2 - time1)
-    }
-    
-    /// Set custom values for calculation parameters
-    ///
-    /// - Parameters:
-    ///   - params: array of `Double` for custome parameters .
-    ///
-    private mutating func setCustomParams(_ params: [Double]) {
-        var cust = methodParams[.custom]!
-        let cal = methodParams[calcMethod]!
-        for i in 0..<5 {
-            cust[i] = params[i] == -1 ? cal[i] : params[i]
-        }
-        calcMethod = .custom
     }
     
     /// Convert double hours to 24h format
@@ -355,56 +325,6 @@ public struct PrayerTime: CustomStringConvertible {
         hrs += 1
         
         return String(format: "%02d:%02.0f", hrs, minutes)
-    }
-    
-    /// Set the angle for calculating Fajr
-    ///
-    /// - Parameters:
-    ///     - angle: The angle for calculating Fajr
-    ///
-    mutating func setFajr(angle param: Double) {
-        let params: [Double] = [param, -1, -1, -1, -1]
-        setCustomParams(params)
-    }
-    
-    /// Set the angle for calculating Maghrib
-    ///
-    /// - Parameters:
-    ///     - angle: The angle for calculating Maghrib
-    ///
-    mutating func setMaghrib(angle param: Double) {
-        let params: [Double] = [-1, 0, param, -1, -1]
-        setCustomParams(params)
-    }
-    
-    /// Set the angle for calculating Isha
-    ///
-    /// - Parameters:
-    ///     - angle: The angle for calculating Isha
-    ///
-    mutating func setIsha(angle param: Double) {
-        let params: [Double] = [-1, -1, -1, 0, param]
-        setCustomParams(params)
-    }
-    
-    /// Set the minutes after Sunset for calculating Maghrib
-    ///
-    /// - Parameters:
-    ///     - minutes: The minutes after Sunset
-    ///
-    mutating func setMaghrib(minutes param: Double) {
-        let params: [Double] = [-1, -1, param, -1, -1]
-        setCustomParams(params)
-    }
-    
-    /// Set the minutes after Maghrib for calculating Isha
-    ///
-    /// - Parameters:
-    ///     - minutes: The minutes after Maghrib
-    ///
-    mutating func setIsha(minutes param: Double) {
-        let params: [Double] = [-1, -1, -1, -1, param]
-        setCustomParams(params)
     }
 }
 

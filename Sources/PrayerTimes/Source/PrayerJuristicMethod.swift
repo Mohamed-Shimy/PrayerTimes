@@ -23,3 +23,5 @@ public enum PrayerJuristicMethod: Int {
     ///
     case hanafi = 2
 }
+
+extension PrayerJuristicMethod: CaseIterable { }

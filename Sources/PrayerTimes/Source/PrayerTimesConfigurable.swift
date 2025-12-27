@@ -14,7 +14,6 @@ public protocol PrayerTimesConfigurable {
     var calcMethod: PrayerTimeCalculationMethod { get set }
     var adjustHighLats: PrayerAdjustingMethod { get set }
     var timeFormat: PrayerTimeStyle { get set }
-    var customParams: [Double]? { get set }
     var dhuhrMinutes: Double { get set }
     var juristic: PrayerJuristicMethod { get set }
     var daylightSavingsHours: Double { get set }
