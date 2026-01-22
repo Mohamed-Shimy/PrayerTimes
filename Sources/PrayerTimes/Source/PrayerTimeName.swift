@@ -2,7 +2,7 @@
 //  PrayerTimeName.swift
 //
 //
-//  Created by Mohamed Shemy on 09/03/2024.
+//  Created by Mohamed Shimy on 09/03/2024.
 //
 
 import Foundation

@@ -2,7 +2,7 @@
 //  PrayerTimesConfigurable.swift
 //  
 //
-//  Created by Mohamed Shemy on 16/02/2024.
+//  Created by Mohamed Shimy on 16/02/2024.
 //
 
 import Foundation

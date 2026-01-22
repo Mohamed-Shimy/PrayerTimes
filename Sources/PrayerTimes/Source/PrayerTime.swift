@@ -2,8 +2,8 @@
 //  PrayerTime.swift
 //  PrayTimes
 //
-//  Created by Mohamed Shemy on 23 Oct, 2020.
-//  Copyright © 2020 Mohamed Shemy. All rights reserved.
+//  Created by Mohamed Shimy on 23 Oct, 2020.
+//  Copyright © 2020 Mohamed Shimy. All rights reserved.
 //
 
 import Foundation
@@ -69,7 +69,7 @@ import Foundation
 /// the timings may be fixed such that a convenient period
 /// (45~60 minutes) is available for each prayer.
 ///
-/// [Reference Alperen.com][spec]
+/// [Alperen.com][spec]
 ///
 /// [spec]:http://alperen.cepmuvakkit.com/alperen/makale/index.htm#Mekruh
 public struct PrayerTime: CustomStringConvertible {
@@ -101,7 +101,7 @@ public struct PrayerTime: CustomStringConvertible {
     ///
     /// Calculation Method
     ///
-    private var calcMethod: PrayerTimeCalculationMethod
+    private var calcMethod: [Double]
     
     ///
     /// Adjusting method for higher latitudes
@@ -133,13 +133,6 @@ public struct PrayerTime: CustomStringConvertible {
     ///      [5]: Isha
     ///
     static let timeNames = ["Fajr", "Sunrise", "Dhuhr", "Asr", "Maghrib", "Isha"]
-    
-    /// Method parameters
-    ///
-    ///  `methodParams`is a dictionary of `CalculationMethod` as a key
-    ///   and array of `Double`  as a value
-    ///
-    private var methodParams: [PrayerTimeCalculationMethod : [Double]]
     
     ///
     /// Tuning offsets
@@ -200,7 +193,6 @@ public struct PrayerTime: CustomStringConvertible {
     ///   - timeFormat: The time format, default `time12`.
     ///   - dhuhrMinutes: The value minutes after mid-day for Dhuhr, default `0.0`.
     ///   - asrJuristic: The juristic method, default `shafii`.
-    ///
     public init(
         date: Date,
         location: Location,
@@ -213,7 +205,7 @@ public struct PrayerTime: CustomStringConvertible {
     ) {
         self.date = date
         self.location = location
-        self.calcMethod = calcMethod
+        self.calcMethod = calcMethod.parameters
         self.adjustHighLats = adjustHighLats
         self.timeFormat = timeFormat
         self.timeZone = timeZone
@@ -222,11 +214,6 @@ public struct PrayerTime: CustomStringConvertible {
         
         //Tuning offsets
         offsets = [0, 0, 0, 0, 0, 0, 0]
-        methodParams = PrayerTimeCalculationMethod.allCases.reduce([:]) { result, method in
-            var result = result
-            result[method] = method.parameters
-            return result
-        }
         
         let lonDiff = location.longitude / 336.0 // 336.0 = (15.0 * 24.0)
         julianDate = julianDate(from: date) - lonDiff
@@ -257,20 +244,20 @@ public struct PrayerTime: CustomStringConvertible {
     ///
     /// - Parameters:
     ///   - time1: The first value.
-    ///   - time2: The secound value.
+    ///   - time2: The second value.
     ///
     /// - Returns:
     ///   - The difference between two `time2` and `time1`.
     ///
     private func timeDiff(_ time1: Double, _ time2: Double) -> Double {
-        return fixhour(time2 - time1)
+        return fixHour(time2 - time1)
     }
     
     /// Convert double hours to 24h format
     ///
     ///     float time = hours + (minutes / 60)
     ///
-    ///     hours = Intergar value
+    ///     hours = Integral value
     ///     minutes = reminder * 60
     ///
     ///     ex: float time 17.25
@@ -284,20 +271,20 @@ public struct PrayerTime: CustomStringConvertible {
     ///   - float: The value of hours.
     ///
     /// - Returns:
-    ///   - Formated hours to 24h format.
+    ///   - Formatted hours to 24h format.
     ///
     private func time24(from float: Double) -> String {
         var time = float
         if time.isNaN { return "" }
         
-        time = fixhour((time + 0.5 / 60.0)) // add 0.5 minutes to round
+        time = fixHour((time + 0.5 / 60.0)) // add 0.5 minutes to round
         let hours = floor(time)
         let minutes = floor((time - hours) * 60.0)
         
         return String(format: "%02d:%02.0f", hours, minutes)
     }
     
-    /// Cconvert double hours to 12h format
+    /// Convert double hours to 12h format
     ///
     ///     let time = time12(from: 17.25, with: false)
     ///     // time == "5:15 pm"
@@ -310,13 +297,13 @@ public struct PrayerTime: CustomStringConvertible {
     ///   - noSuffix: The flag for no suffix in output format.
     ///
     /// - Returns:
-    ///   - Formated hours to 12h format.
+    ///   - Formatted hours to 12h format.
     ///
     private func time12(from float: Double) -> String {
         var time = float
         if time.isNaN { return "" }
         
-        time = fixhour((time + 0.5 / 60)) // add 0.5 minutes to round
+        time = fixHour((time + 0.5 / 60)) // add 0.5 minutes to round
         var hours = floor(time)
         let minutes = floor((time - hours) * 60)
         
@@ -344,14 +331,19 @@ extension PrayerTime {
     ///
     private func sunPosition(_ julianDate : Double) -> [Double] {
         let date = julianDate - 2451545
-        let meanAnomaly = fixangle(357.529 + 0.98560028 * date)
-        let meanLongitude = fixangle(280.459 + 0.98564736 * date)
-        let eclipticAngle = fixangle(meanLongitude + (1.915 * dsin(meanAnomaly)) + (0.020 * dsin(2 * meanAnomaly)))
+        let meanAnomaly = fixAngle(357.529 + 0.98560028 * date)
+        let meanLongitude = fixAngle(280.459 + 0.98564736 * date)
+        let eclipticAngle = fixAngle(meanLongitude + (1.915 * dsin(meanAnomaly)) + (0.020 * dsin(2 * meanAnomaly)))
         
-        let obliquityofEarth = 23.439 - (0.00000036 * date)
-        let declination = darcsin(dsin(obliquityofEarth) * dsin(eclipticAngle))
-        var rightAscension = (darctan2((dcos(obliquityofEarth) * dsin(eclipticAngle)), andX: dcos(eclipticAngle))) / 15.0
-        rightAscension = fixhour(rightAscension)
+        let obliquityOfEarth = 23.439 - (0.00000036 * date)
+        let declination = darcsin(dsin(obliquityOfEarth) * dsin(eclipticAngle))
+        var rightAscension = (
+            darctan2(
+                (dcos(obliquityOfEarth) * dsin(eclipticAngle)),
+                andX: dcos(eclipticAngle)
+            )
+        ) / 15.0
+        rightAscension = fixHour(rightAscension)
         
         let timeEquation = meanLongitude / 15.0 - rightAscension
         
@@ -392,7 +384,7 @@ extension PrayerTime {
     ///
     private func computeMidDay(_ time: Double) -> Double {
         let time = equationOfTime(julianDate + time)
-        let zawal = fixhour(12 - time)
+        let zawal = fixHour(12 - time)
         return zawal
     }
     
@@ -448,7 +440,11 @@ extension PrayerTime {
     /// - Returns:
     ///   - Julian date
     ///
-    private func julianDate(from year: Int, andMonth month: Int, andDay day: Int) -> Double {
+    private func julianDate(
+        from year: Int,
+        andMonth month: Int,
+        andDay day: Int
+    ) -> Double {
         let date1970: Double = 2440588
         var components = DateComponents()
         components.weekday = day
@@ -478,15 +474,15 @@ extension PrayerTime {
     ///
     private func computeTimes(_ times: [Double]) -> [Double] {
         let times = dayPortion(times)
-        let methodParam = methodParams[calcMethod]!
+        let methodParam = calcMethod
         let idk = methodParam[0]
         let fajr = computeTime((180 - idk), andTime: times[.fajr])
         let sunrise = computeTime((180 - 0.833), andTime: times[.sunrise])
         let dhuhr = computeMidDay(times[.dhuhr])
         let asr = computeAsr(Double(asrJuristic.rawValue), andTime: times[.asr])
         let sunset = computeTime(0.833, andTime: times[.sunset])
-        let maghrib = computeTime(methodParams[calcMethod]![2], andTime: times[.maghrib])
-        let isha = computeTime((methodParams[calcMethod]![4]), andTime: times[.isha])
+        let maghrib = computeTime(calcMethod[2], andTime: times[.maghrib])
+        let isha = computeTime((calcMethod[4]), andTime: times[.isha])
         
         return [fajr, sunrise, dhuhr, asr, sunset, maghrib, isha]
     }
@@ -500,8 +496,8 @@ extension PrayerTime {
         let times: [Double] = [5, 6, 12, 13, 18, 18, 18]
         let computedTimes = computeTimes(times)
         let adjustedTimes = adjustTimes(computedTimes)
-        let tuneTimesdTimes = tuneTimes(adjustedTimes)
-        return tuneTimesdTimes
+        let tunedTimes = tuneTimes(adjustedTimes)
+        return tunedTimes
     }
     
     ///
@@ -526,31 +522,31 @@ extension PrayerTime {
         var times = times
         var a: [Double] = []
         var time: Double = 0
-        var Dtime: Double
-        let Dtime1: Double
-        let Dtime2: Double
+        var dTime: Double
+        let dTime1: Double
+        let dTime2: Double
         
         for i in 0..<times.count {
             time = times[i] + (timeZone - location.longitude / 15.0)
             times[i] = time
         }
         
-        Dtime = times[.dhuhr] + (dhuhrMinutes / 60.0) //Dhuhr
-        times[.dhuhr] = Dtime
+        dTime = times[.dhuhr] + (dhuhrMinutes / 60.0) //Dhuhr
+        times[.dhuhr] = dTime
         
-        a = methodParams[calcMethod]!
+        a = calcMethod
         let val = a[1]
         
         if val == 1 {
             // Maghrib
-            Dtime1 = times[.sunset] + methodParams[calcMethod]![2]
-            times[.maghrib] = Dtime1
+            dTime1 = times[.sunset] + calcMethod[2]
+            times[.maghrib] = dTime1
         }
         
-        if methodParams[calcMethod]![3] == 1 {
+        if calcMethod[3] == 1 {
             // Isha
-            Dtime2 = times[.maghrib] + (methodParams[calcMethod]![4] / 60.0)
-            times[.isha] = Dtime2
+            dTime2 = times[.maghrib] + (calcMethod[4] / 60.0)
+            times[.isha] = dTime2
         }
         
         if adjustHighLats != .none {
@@ -563,10 +559,10 @@ extension PrayerTime {
     /// Convert times array to given time format
     ///
     private func adjustTimesFormat(_ times: [Double]) -> [String] {
-        return times.map({ formatedTime(for: $0) })
+        return times.map({ formattedTime(for: $0) })
     }
     
-    private func formatedTime(for time: Double) -> String {
+    private func formattedTime(for time: Double) -> String {
         switch timeFormat {
             case .time12, .time12NS: return time12(from: time)
             case .time24, .float: return time24(from: time)
@@ -587,11 +583,11 @@ extension PrayerTime {
         let nightTime = timeDiff(time4, time1) // sunset to sunrise
         
         // Adjust Fajr
-        let obj0 = methodParams[calcMethod]![0]
-        let obj1 = methodParams[calcMethod]![1]
-        let obj2 = methodParams[calcMethod]![2]
-        let obj3 = methodParams[calcMethod]![3]
-        let obj4 = methodParams[calcMethod]![4]
+        let obj0 = calcMethod[0]
+        let obj1 = calcMethod[1]
+        let obj2 = calcMethod[2]
+        let obj3 = calcMethod[3]
+        let obj4 = calcMethod[4]
         
         let FajrDiff: Double = nightPortion(obj0) * nightTime
         
@@ -600,17 +596,17 @@ extension PrayerTime {
         }
         
         // Adjust Isha
-        let IshaAngle: Double = (obj3 == 0) ? obj4 : 18
-        let IshaDiff: Double = nightPortion(IshaAngle) * nightTime
-        if time6.isNaN || timeDiff(time4, time6) > IshaDiff {
-            times[6] = time4 + IshaDiff
+        let ishaAngle: Double = (obj3 == 0) ? obj4 : 18
+        let ishaDiff: Double = nightPortion(ishaAngle) * nightTime
+        if time6.isNaN || timeDiff(time4, time6) > ishaDiff {
+            times[6] = time4 + ishaDiff
         }
         
         // Adjust Maghrib
-        let MaghribAngle: Double = (obj1 == 0) ? obj2 : 4
-        let MaghribDiff: Double = nightPortion(MaghribAngle) * nightTime
-        if time5.isNaN || timeDiff(time4, time5) > MaghribDiff {
-            times[5] = time4 + MaghribDiff
+        let maghribAngle: Double = (obj1 == 0) ? obj2 : 4
+        let maghribDiff: Double = nightPortion(maghribAngle) * nightTime
+        if time5.isNaN || timeDiff(time4, time5) > maghribDiff {
+            times[5] = time4 + maghribDiff
         }
         return times
     }
@@ -634,11 +630,8 @@ extension PrayerTime {
     ///
     private func dayPortion(_ times: [Double]) -> [Double] {
         var times = times
-        var time: Double = 0
         for i in 0..<times.count {
-            time = times[i]
-            time = time / 24.0
-            times[i] = time
+            times[i] = times[i] / 24.0
         }
         return times
     }
@@ -650,7 +643,7 @@ extension PrayerTime {
     ///
     /// Range reduce angle in degrees.
     ///
-    private func fixangle(_ a: Double) -> Double {
+    private func fixAngle(_ a: Double) -> Double {
         var a = a
         a = a - (360 * (floor(a / 360.0)))
         a = a < 0 ? (a + 360) : a
@@ -660,7 +653,7 @@ extension PrayerTime {
     ///
     /// Range reduce hours to 0..23
     ///
-    private func fixhour(_ a: Double) -> Double {
+    private func fixHour(_ a: Double) -> Double {
         var a = a
         a = a - 24.0 * floor(a / 24.0)
         a = a < 0 ? (a + 24) : a
@@ -715,14 +708,6 @@ extension PrayerTime {
     ///
     private func darccos(_ x: Double) -> Double {
         let val = acos(x)
-        return radians(toDegrees: val)
-    }
-    
-    ///
-    /// Degree arctan
-    ///
-    private func darctan(_ x: Double) -> Double {
-        let val = atan(x)
         return radians(toDegrees: val)
     }
     

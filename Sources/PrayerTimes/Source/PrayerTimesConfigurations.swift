@@ -2,8 +2,8 @@
 //  Configurations.swift
 //  iPrayUI
 //
-//  Created by Mohamed Shemy on Wed 23 Dec 2020.
-//  Copyright © 2020 Mohamed Shemy. All rights reserved.
+//  Created by Mohamed Shimy on Wed 23 Dec 2020.
+//  Copyright © 2020 Mohamed Shimy. All rights reserved.
 //
 
 import Foundation

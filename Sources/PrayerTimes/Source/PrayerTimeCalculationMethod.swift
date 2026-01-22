@@ -2,8 +2,8 @@
 //  PrayerTimeCalculationMethod.swift
 //  iPray
 //
-//  Created by Mohamed Shemy on Sat 16 Apr, 2022.
-//  Copyright © 2022 Mohamed Shemy. All rights reserved.
+//  Created by Mohamed Shimy on Sat 16 Apr, 2022.
+//  Copyright © 2022 Mohamed Shimy. All rights reserved.
 //
 
 import Foundation
